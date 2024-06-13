@@ -1,17 +1,16 @@
 <template>
-  <ul>
-    <li v-for="project in projects" :key="project.id">
-      <span>{{ project.name }}</span>
-      <p>{{ project.description }}</p>
-      <a :href="project.giturl" target="_blank">Link Github</a>
-    </li>
-  </ul>
+  <h1>Pagina Home</h1>
+  <ProjectCard :projectsProp="projects" />
 </template>
 
 <script>
 import axios from "axios";
+import ProjectCard from "./ProjectCard.vue";
 
 export default {
+  components: {
+    ProjectCard,
+  },
   data() {
     return {
       projects: [],
@@ -23,11 +22,11 @@ export default {
         .get("http://127.0.0.1:8000/api/projects", {
           params: {
             page: 1,
-            perPage: 5,
+            perPage: 10,
           },
         })
         .then((res) => {
-          console.log(res.data.results.data);
+          // console.log(res.data.results.data);
           this.projects = res.data.results.data;
         });
     },
