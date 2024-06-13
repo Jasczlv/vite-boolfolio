@@ -1,16 +1,16 @@
 <template>
-  <div>
+  <div class="container">
     {{ message }}
+    <p><strong>Current route path:</strong> {{ $route.fullPath }}</p>
   </div>
-  <Index />
+  <RouterLink to="/">Go to Home</RouterLink>
+  <RouterLink to="/portfolio">Go to Portfolio</RouterLink>
+  <RouterLink to="/contact">Go to Contact</RouterLink>
+  <RouterView />
 </template>
 
 <script>
-import Index from "./components/Index.vue";
 export default {
-  components: {
-    Index,
-  },
   data() {
     return {
       message: "Pagina iniziale",
